@@ -10,7 +10,7 @@ ssh root@your.server
 
 Download the installation script:
 ```bash
-curl -L -O https://github.com/pnduonghd/vesta/raw/master/install/vst-install-rhel.sh
+curl -L -O 'https://raw.githubusercontent.com/pnduonghd/vesta/master/install/vst-install-rhel.sh'
 ```
 Then run it:
 ```bash
