@@ -3,13 +3,16 @@ server {
     server_name %domain_idn% %alias_idn%;
     root        %docroot%/public;
     index       index.php index.html index.htm;
-    access_log  /var/log/nginx/domains/%domain%.log combined;
-    access_log  /var/log/nginx/domains/%domain%.bytes bytes;
+    access_log  off;
+    # access_log  /var/log/nginx/domains/%domain%.log combined;
+    # access_log  /var/log/nginx/domains/%domain%.bytes bytes;
     error_log   /var/log/nginx/domains/%domain%.error.log error;
     location / {
-        try_files $uri $uri/ /index.php?$query_string;
+        try_files $uri $uri/ /index.php?_url=$uri&$args;
         location ~* ^.+\.(jpeg|jpg|png|gif|bmp|ico|svg|css|js)$ {
-            expires     max;
+            expires         max;
+            log_not_found   off;
+            access_log      off;
         }
 
         location ~ [^/]\.php(/|$) {
@@ -41,10 +44,6 @@ server {
         alias   %home%/%user%/web/%domain%/stats/;
         include %home%/%user%/conf/web/%domain%.auth*;
     }
-
-    include     /etc/nginx/conf.d/phpmyadmin.inc*;
-    include     /etc/nginx/conf.d/phppgadmin.inc*;
-    include     /etc/nginx/conf.d/webmail.inc*;
 
     include     %home%/%user%/conf/web/nginx.%domain%.conf*;
 }
