@@ -635,7 +635,7 @@ yum install -y $software
 if [ $? -ne 0 ]; then
     if [ "$remi" = 'yes' ]; then
         yum -y --disablerepo=* \
-            --enablerepo="*base,*updates,nginx,epel,vesta,remi*" \
+            --enablerepo="*base,*updates,nginx,epel,vesta,remi,remi-php73" \
             install $software
     else
         yum -y --disablerepo=* --enablerepo="*base,*updates,nginx,epel,vesta" \
