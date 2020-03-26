@@ -21,14 +21,14 @@ vestacp="$VESTA/install/$VERSION/$release"
 # Defining software pack for all distros
 software="awstats bc bind bind-libs bind-utils clamav-server clamav-update
     curl dovecot e2fsprogs exim expect fail2ban flex freetype ftp GeoIP httpd
-    ImageMagick iptables-services jwhois lsof mailx mariadb mariadb-server mc
+    ImageMagick iptables-services jwhois lsof mailx MariaDB-server MariaDB-client mc
     mod_fcgid mod_ruid2 mod_ssl net-tools nginx ntp openssh-clients pcre php
     php-bcmath php-cli php-common php-fpm php-gd php-imap php-mbstring
     php-mcrypt phpMyAdmin php-mysql php-pdo phpPgAdmin php-pgsql php-soap
     php-tidy php-xml php-xmlrpc postgresql postgresql-contrib
     postgresql-server proftpd roundcubemail rrdtool rsyslog screen
     spamassassin sqlite sudo tar telnet unzip vesta vesta-ioncube vesta-nginx
-    vesta-php vesta-softaculous vim-common vsftpd webalizer which zip"
+    vesta-php vesta-softaculous vim-common vsftpd webalizer which zip redis wget python3 python3-devel php-devel nload htop php-pecl-redis nano php-phalcon3"
 
 # Fix for old releases
 if [ "$release" -lt 7 ]; then
@@ -468,6 +468,15 @@ echo "name=nginx repo" >> $nrepo
 echo "baseurl=http://nginx.org/packages/centos/$release/\$basearch/" >> $nrepo
 echo "gpgcheck=0" >> $nrepo
 echo "enabled=1" >> $nrepo
+
+# Installing MariaDB repository
+mrepo="/etc/yum.repos.d/mariadb.repo"
+echo "[mariadb]" > $mrepo
+echo "name=MariaDB" >> $mrepo
+echo "baseurl=http://yum.mariadb.org/10.3/centos$release-amd64" >> $mrepo
+echo "gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB" >> $mrepo
+echo "gpgcheck=1" >> $mrepo
+echo "enabled=1" >> $mrepo
 
 # Installing Vesta repository
 vrepo='/etc/yum.repos.d/vesta.repo'
@@ -1403,5 +1412,10 @@ echo
 echo
 cat $tmpfile
 rm -f $tmpfile
+
+systemctl start redis.service
+systemctl enable redis
+systemctl status redis.service
+redis-cli ping
 
 # EOF
