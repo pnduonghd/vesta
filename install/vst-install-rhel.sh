@@ -472,7 +472,7 @@ echo "enabled=1" >> $nrepo
 # Installing MariaDB repository
 mrepo="/etc/yum.repos.d/mariadb.repo"
 echo "[mariadb]" > $mrepo
-echo "name=MariaDB" >> $mrepo
+echo "name=mariadb" >> $mrepo
 echo "baseurl=http://yum.mariadb.org/10.3/centos$release-amd64" >> $mrepo
 echo "gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB" >> $mrepo
 echo "gpgcheck=1" >> $mrepo
@@ -644,7 +644,7 @@ yum install -y $software
 if [ $? -ne 0 ]; then
     if [ "$remi" = 'yes' ]; then
         yum -y --disablerepo=* \
-            --enablerepo="*base,*updates,nginx,epel,vesta,remi,remi-php73" \
+            --enablerepo="*base,*updates,nginx,epel,vesta,mariadb,remi,remi-php73" \
             install $software
     else
         yum -y --disablerepo=* --enablerepo="*base,*updates,nginx,epel,vesta" \
