@@ -1,5 +1,5 @@
 server {
-    listen      %ip%:%web_port%;
+    listen      %web_port%;
     server_name %domain_idn% %alias_idn%;
     root        %docroot%;
     index       index.php index.html index.htm;
@@ -22,6 +22,14 @@ server {
             fastcgi_pass    %backend_lsnr%;
             fastcgi_index   index.php;
             include         /etc/nginx/fastcgi_params;
+            fastcgi_connect_timeout 250;
+            fastcgi_send_timeout 250;
+            fastcgi_read_timeout 250;
+            fastcgi_buffer_size 256k;
+            fastcgi_buffers 4 256k;
+            fastcgi_busy_buffers_size 256k;
+            fastcgi_temp_file_write_size 256k;
+            fastcgi_intercept_errors on;
         }
     }
 
