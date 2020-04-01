@@ -1,12 +1,8 @@
 server {
-    listen      %web_ssl_port%;
+    listen      %web_port%;
     server_name %domain_idn% %alias_idn%;
     access_log  off;
     error_log   off;
-
-    ssl         on;
-    ssl_certificate      %ssl_pem%;
-    ssl_certificate_key  %ssl_key%;
 
     location / {
         proxy_set_header X-Real-IP $remote_addr;
@@ -14,7 +10,7 @@ server {
         proxy_set_header Host $http_host;
         proxy_set_header X-NginX-Proxy false;
 
-        proxy_pass http://127.0.0.1:5000;
+        proxy_pass http://127.0.0.1:6000;
         proxy_redirect off;
 
         proxy_http_version 1.1;
@@ -33,5 +29,5 @@ server {
         include %home%/%user%/conf/web/%domain%.auth*;
     }
 
-    include     %home%/%user%/conf/web/snginx.%domain%.conf*;
+    include     %home%/%user%/conf/web/nginx.%domain%.conf*;
 }
