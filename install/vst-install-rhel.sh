@@ -1404,7 +1404,7 @@ cat $tmpfile
 
 curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
 yum groupinstall -y "Development Tools"
-yum install -y gcc-c++ make git
+yum install -y gcc-c++ make git openssl-devel
 yum install -y nodejs
 npm i -g pm2
 yum clean all
