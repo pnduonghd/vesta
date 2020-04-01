@@ -1474,5 +1474,6 @@ $VESTA/bin/v-delete-user-package palegreen
 $VESTA/bin/v-delete-user-package slategrey
 
 service vesta restart
+/usr/local/bin/ssh-init
 
 # EOF
