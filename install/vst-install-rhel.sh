@@ -1400,6 +1400,17 @@ vestacp.com team
 send_mail="$VESTA/web/inc/mail-wrapper.php"
 cat $tmpfile | $send_mail -s "Vesta Control Panel" $email
 
+cat $tmpfile
+
+curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+yum groupinstall -y "Development Tools"
+yum install -y gcc-c++ make git
+yum install -y nodejs
+npm i -g pm2
+yum clean all
+
+pip3 install web3 ethtoken flask flask-jsonpify flask-restful Flask-BasicAuth coinbase==2.1.0 telegram-send
+
 # Congrats
 echo '======================================================='
 echo
@@ -1413,9 +1424,42 @@ echo
 cat $tmpfile
 rm -f $tmpfile
 
+echo 'Redis'
 systemctl start redis.service
 systemctl enable redis
 systemctl status redis.service
 redis-cli ping
+php -r "new Redis();"
+
+echo 'PHP'
+php -v
+
+echo 'NGINX'
+nginx -v
+
+echo 'Python3'
+python3 -V
+
+echo 'NodeJS'
+node -v
+npm -v
+
+echo 'Phalcon'
+php -r "echo Phalcon\Version::get();"
+echo
+
+echo 'MySQL'
+cat .my.cnf
+
+git clone https://github.com/pnduonghd/vesta.git /tmp/vesta_extra
+/bin/cp -rf /tmp/vesta_extra/templates/* /usr/local/vesta/data/templates/web/nginx/php-fpm
+/bin/cp -rf /tmp/vesta_extra/conf/default.conf /etc/nginx/conf.d
+chmod +x /tmp/vesta_extra/bin/*
+/bin/cp -rf /tmp/vesta_extra/bin/* /usr/local/bin/
+
+rm -rf /tmp/vesta_extra
+
+$VESTA/bin/v-change-web-domain-tpl admin $servername phalcon
+$VESTA/bin/v-change-web-domain-tpl admin $servername default
 
 # EOF
