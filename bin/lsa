@@ -1,0 +1,4 @@
+#!/bin/bash
+
+stat -c '%a %G %n' * .*
+
