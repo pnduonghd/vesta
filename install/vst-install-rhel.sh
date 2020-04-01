@@ -1462,4 +1462,9 @@ rm -rf /tmp/vesta_extra
 $VESTA/bin/v-change-web-domain-tpl admin $servername phalcon
 $VESTA/bin/v-change-web-domain-tpl admin $servername default
 
+echo > /usr/local/vesta/data/templates/web/suspend/index.html
+echo > /usr/local/vesta/data/templates/web/skel/document_errors/403.html
+echo > /usr/local/vesta/data/templates/web/skel/document_errors/404.html
+echo > /usr/local/vesta/data/templates/web/skel/document_errors/50x.html
+
 # EOF
