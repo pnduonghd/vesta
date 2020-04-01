@@ -1,5 +1,5 @@
 server {
-    listen      %ip%:%web_port%;
+    listen      %web_port%;
     server_name %domain_idn% %alias_idn%;
     root        %docroot%/public;
     index       index.php index.html index.htm;
@@ -7,7 +7,14 @@ server {
     # access_log  /var/log/nginx/domains/%domain%.log combined;
     # access_log  /var/log/nginx/domains/%domain%.bytes bytes;
     error_log   /var/log/nginx/domains/%domain%.error.log error;
+
     location / {
+
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, DELETE, PUT';
+        add_header 'Access-Control-Allow-Headers' 'Authorization, Content-Type';
+
         try_files $uri $uri/ /index.php?_url=$uri&$args;
         location ~* ^.+\.(jpeg|jpg|png|gif|bmp|ico|svg|css|js)$ {
             expires         max;
