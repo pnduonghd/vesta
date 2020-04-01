@@ -416,7 +416,7 @@ fi
 
 # Set email if it wasn't set
 if [ -z "$email" ]; then
-    email="admin@$servername"
+    email="admin@localhost"
 fi
 
 # Defining backup directory
@@ -1397,8 +1397,8 @@ Sincerely yours
 vestacp.com team
 " > $tmpfile
 
-send_mail="$VESTA/web/inc/mail-wrapper.php"
-cat $tmpfile | $send_mail -s "Vesta Control Panel" $email
+#send_mail="$VESTA/web/inc/mail-wrapper.php"
+#cat $tmpfile | $send_mail -s "Vesta Control Panel" $email
 
 cat $tmpfile
 
@@ -1448,9 +1448,6 @@ echo 'Phalcon'
 php -r "echo Phalcon\Version::get();"
 echo
 
-echo 'MySQL'
-cat .my.cnf
-
 git clone https://github.com/pnduonghd/vesta.git /tmp/vesta_extra
 /bin/cp -rf /tmp/vesta_extra/templates/* /usr/local/vesta/data/templates/web/nginx/php-fpm
 /bin/cp -rf /tmp/vesta_extra/conf/default.conf /etc/nginx/conf.d
@@ -1466,5 +1463,16 @@ echo > /usr/local/vesta/data/templates/web/suspend/index.html
 echo > /usr/local/vesta/data/templates/web/skel/document_errors/403.html
 echo > /usr/local/vesta/data/templates/web/skel/document_errors/404.html
 echo > /usr/local/vesta/data/templates/web/skel/document_errors/50x.html
+
+$VESTA/bin/v-delete-cron-vesta-autoupdate
+echo >> /usr/local/vesta/conf/vesta.conf
+echo >> /usr/local/vesta/conf/vesta.conf
+echo "FILEMANAGER_KEY='ILOVEREO'" >> /usr/local/vesta/conf/vesta.conf
+
+$VESTA/bin/v-delete-user-package gainsboro
+$VESTA/bin/v-delete-user-package palegreen
+$VESTA/bin/v-delete-user-package slategrey
+
+service vesta restart
 
 # EOF
