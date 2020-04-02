@@ -26,3 +26,34 @@ How to update
 ```
 curl -L -s 'https://raw.githubusercontent.com/pnduonghd/vesta/master/bin/vesta-update' | bash
 ```
+
+Extra
+----------------------------
+
+```
+mongodb-install
+```
+
+```
+vesta-change-port
+```
+
+```
+sshd-change-port
+```
+
+```
+systemctl disable named
+```
+
+```
+service named stop
+```
+
+```
+systemctl disable fail2ban
+```
+
+```
+service fail2ban stop
+```
