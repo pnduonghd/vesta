@@ -1,0 +1,31 @@
+#!/bin/bash
+
+cat << EOM > /etc/yum.repos.d/mongodb.repo
+
+[mongodb]
+name=mongodb
+baseurl=https://repo.mongodb.org/yum/redhat/\$releasever/mongodb-org/4.2/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc
+
+EOM
+
+yum install -y mongodb-org
+
+cat << EOCF >> /etc/mongod.conf
+
+security:
+  authorization: enabled
+
+EOCF
+
+#yum install -y php73-php-pecl-mongodb
+yum install -y php-pecl-mongodb --enablerepo remi-php73
+
+systemctl start mongod
+systemctl enable mongod
+systemctl status mongod
+
+echo "Check MongoDB PHP Driver"
+php -r "print_r(get_loaded_extensions());" | grep mongodb
