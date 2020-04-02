@@ -4,6 +4,14 @@
 How to install
 ----------------------------
 
+```
+yum install -y screen
+```
+
+```
+screen -R root
+```
+
 ```bash
 curl -L -O 'https://raw.githubusercontent.com/pnduonghd/vesta/master/install/vst-install-rhel.sh'
 ```
