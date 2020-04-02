@@ -5,6 +5,8 @@ echo ${port}
 
 sed -i -E "s/(listen)(\s+)([0-9]+)/\1\2${port}/" /usr/local/vesta/nginx/conf/nginx.conf
 
+cat /usr/local/vesta/nginx/conf/nginx.conf | grep listen
+
 /usr/local/vesta/bin/v-add-firewall-rule accept 0.0.0.0/0 ${port} TCP ${port}
 
 service nginx restart
