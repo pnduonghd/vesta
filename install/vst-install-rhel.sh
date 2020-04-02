@@ -1409,7 +1409,7 @@ yum install -y nodejs
 npm i -g pm2
 yum clean all
 
-pip3 install web3 ethtoken flask flask-jsonpify flask-restful Flask-BasicAuth coinbase==2.1.0 telegram-send
+pip3 install web3 ethtoken flask flask-jsonpify flask-restful Flask-BasicAuth coinbase==2.1.0 telegram-send pipenv
 
 # Congrats
 echo '======================================================='

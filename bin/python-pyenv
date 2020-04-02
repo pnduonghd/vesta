@@ -1,0 +1,11 @@
+#!/bin/bash
+
+curl https://pyenv.run | bash
+
+cat << EOPY >> ${HOME}/.bash_profile
+
+export PATH=\$HOME/.pyenv/bin:\$PATH
+eval "\$(pyenv init -)"
+eval "\$(pyenv virtualenv-init -)"
+
+EOPY
