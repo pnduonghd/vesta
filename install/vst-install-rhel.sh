@@ -416,7 +416,7 @@ fi
 
 # Set email if it wasn't set
 if [ -z "$email" ]; then
-    email="admin@localhost"
+    email="admin@$servername"
 fi
 
 # Defining backup directory
