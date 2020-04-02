@@ -13,4 +13,4 @@ cd */
 
 rm -rf ${TEMP_FOLDER}
 
-rclone --version
+/usr/local/bin/rclone --version
