@@ -1,0 +1,15 @@
+#!/bin/bash
+
+read -p 'Enter New SSH Port: ' port
+echo "Port ${port}"
+
+sed -i -E "/Port(\s+)([0-9]+)/d" /etc/ssh/sshd_config
+
+echo >> /etc/ssh/sshd_config
+echo "Port ${port}" >> /etc/ssh/sshd_config
+
+cat /etc/ssh/sshd_config | grep Port
+
+/usr/local/vesta/bin/v-add-firewall-rule accept 0.0.0.0/0 ${port} TCP ${port}
+
+service sshd restart
