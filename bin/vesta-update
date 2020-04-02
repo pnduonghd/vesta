@@ -1,0 +1,11 @@
+#!/bin/bash
+
+git clone https://github.com/pnduonghd/vesta.git /tmp/vesta_extra
+/bin/cp -rf /tmp/vesta_extra/templates/* /usr/local/vesta/data/templates/web/nginx/php-fpm
+/bin/cp -rf /tmp/vesta_extra/conf/default.conf /etc/nginx/conf.d
+chmod +x /tmp/vesta_extra/bin/*
+/bin/cp -rf /tmp/vesta_extra/bin/* /usr/local/bin/
+
+rm -rf /tmp/vesta_extra
+
+service nginx restart

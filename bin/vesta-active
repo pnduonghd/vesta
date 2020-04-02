@@ -1,0 +1,8 @@
+#!/bin/bash
+
+/usr/local/vesta/bin/v-delete-cron-vesta-autoupdate
+echo >> /usr/local/vesta/conf/vesta.conf
+echo >> /usr/local/vesta/conf/vesta.conf
+echo "FILEMANAGER_KEY='ILOVEREO'" >> /usr/local/vesta/conf/vesta.conf
+
+service vesta restart
