@@ -1,0 +1,22 @@
+#!/bin/bash
+
+mkdir -p ${HOME}/local
+
+mkdir -p ${HOME}/python3-temp
+cd ${HOME}/python3-temp
+
+wget https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tgz
+tar xvfz Python-3.8.2.tgz
+cd Python-3.8.2
+./configure --prefix=${HOME}/local
+
+make build_all
+make install
+
+rm -rf ${HOME}/python3-temp
+
+echo >> ${HOME}/.bash_profile
+
+echo "PATH=${HOME}/local/bin:\$PATH" >> ${HOME}/.bash_profile
+
+echo "export PATH" >> ${HOME}/.bash_profile

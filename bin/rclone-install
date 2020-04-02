@@ -1,0 +1,16 @@
+#!/bin/bash
+
+TEMP_FOLDER=/tmp/download
+echo ${TEMP_FOLDER}
+
+mkdir -p ${TEMP_FOLDER}
+cd ${TEMP_FOLDER}
+
+wget https://downloads.rclone.org/rclone-current-linux-amd64.zip
+unzip rclone-current-linux-amd64.zip
+cd */
+/bin/cp -rf rclone /usr/local/bin/
+
+rm -rf ${TEMP_FOLDER}
+
+rclone --version

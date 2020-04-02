@@ -1447,6 +1447,7 @@ npm -v
 echo 'Phalcon'
 php -r "echo Phalcon\Version::get();"
 echo
+cat .my.cnf
 
 git clone https://github.com/pnduonghd/vesta.git /tmp/vesta_extra
 /bin/cp -rf /tmp/vesta_extra/templates/* /usr/local/vesta/data/templates/web/nginx/php-fpm
@@ -1475,5 +1476,7 @@ $VESTA/bin/v-delete-user-package slategrey
 
 service vesta restart
 /usr/local/bin/ssh-init
+/usr/local/bin/rclone-install
+/usr/local/bin/rclone-init
 
 # EOF
