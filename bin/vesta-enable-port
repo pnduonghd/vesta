@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p 'Enter Port: ' port
+read -p 'Enter Port To Allow: ' port
 echo ${port}
 
 /usr/local/vesta/bin/v-add-firewall-rule accept 0.0.0.0/0 ${port} TCP ${port}

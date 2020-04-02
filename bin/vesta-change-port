@@ -1,0 +1,11 @@
+#!/bin/bash
+
+read -p 'Enter New Vesta Port: ' port
+echo ${port}
+
+sed -i -E "s/(listen)(\s+)([0-9]+)/\1\2${port}/" /usr/local/vesta/nginx/conf/nginx.conf
+
+/usr/local/vesta/bin/v-add-firewall-rule accept 0.0.0.0/0 ${port} TCP ${port}
+
+service nginx restart
+service vesta restart
