@@ -1,0 +1,16 @@
+[Unit]
+Description=Redis %USER%
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/redis-server /home/%USER%/redis/redis.conf --daemonize no --supervised systemd
+ExecStop=/home/%USER%/redis/redis-shutdown
+Type=notify
+User=%USER%
+Group=%USER%
+RuntimeDirectory=/home/%USER%/redis
+RuntimeDirectoryMode=0755
+
+[Install]
+WantedBy=multi-user.target
+
