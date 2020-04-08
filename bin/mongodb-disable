@@ -1,0 +1,5 @@
+#!/bin/bash
+
+systemctl disable mongod
+systemctl stop mongod
+systemctl status mongod

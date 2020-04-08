@@ -44,16 +44,16 @@ sshd-change-port
 
 ```
 systemctl disable named
-```
-
-```
 service named stop
 ```
 
 ```
 systemctl disable fail2ban
+service fail2ban stop
 ```
 
 ```
-service fail2ban stop
+systemctl disable mongod
+systemctl stop mongod
+systemctl status mongod
 ```

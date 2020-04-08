@@ -1447,6 +1447,7 @@ npm -v
 echo 'Phalcon'
 php -r "echo Phalcon\Version::get();"
 echo
+cd ~
 cat .my.cnf
 
 git clone https://github.com/pnduonghd/vesta.git /tmp/vesta_extra
@@ -1478,5 +1479,7 @@ service vesta restart
 /usr/local/bin/ssh-init
 /usr/local/bin/rclone-install
 /usr/local/bin/rclone-init
+
+chmod 711 /home
 
 # EOF
