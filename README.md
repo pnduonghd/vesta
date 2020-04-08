@@ -29,6 +29,9 @@ curl -L -s 'https://raw.githubusercontent.com/pnduonghd/vesta/master/bin/vesta-u
 
 Extra
 ----------------------------
+```
+Edit VestaCP Default Package
+```
 
 ```
 mongodb-install
