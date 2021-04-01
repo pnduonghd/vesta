@@ -1,0 +1,13 @@
+#!/bin/bash
+
+yum install -y zsh
+curl -L -o /usr/local/bin/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh
+chmod +x /usr/local/bin/z.sh
+
+echo >> ~/.bashrc
+echo >> ~/.zshrc
+
+echo . /usr/local/bin/z.sh >> ~/.bashrc
+echo . /usr/local/bin/z.sh >> ~/.zshrc
+
+chsh -s $(which zsh)
