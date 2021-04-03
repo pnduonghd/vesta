@@ -10,4 +10,4 @@ echo >> ~/.zshrc
 echo . /usr/local/bin/z.sh >> ~/.bashrc
 echo . /usr/local/bin/z.sh >> ~/.zshrc
 
-chsh -s $(which zsh)
+#chsh -s $(which zsh)
