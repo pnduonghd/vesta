@@ -1,0 +1,15 @@
+#!/bin/bash
+
+mkdir -p /opt/temp/nvim
+cd /opt/temp/nvim
+
+curl -L -o nvim.appimage https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
+chmod u+x nvim.appimage
+./nvim.appimage --appimage-extract
+mv squashfs-root nvim
+
+mv /opt/temp/nvim/nvim /opt
+
+ln -s /opt/nvim/usr/bin/nvim /usr/local/bin/nvim
+cd ~
+rm -rf /opt/temp/nvim
