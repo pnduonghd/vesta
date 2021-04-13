@@ -1,0 +1,41 @@
+#!/bin/bash
+
+yum -y install gcc gcc-c++ zlib zlib-devel libffi libffi-devel openssl openssl-devel bzip2 bzip2-devel ncurses ncurses-devel gdbm gdbm-devel xz xz-devel sqlite sqlite-devel tk tk-devel uuid uuid-devel readline readline-devel
+yum -y install @development zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel libffi-devel findutils
+
+python_version=3.8.9
+if [[ -n "$1" ]]; then
+    python_version=$1
+    echo Installing Python ${python_version}
+else
+    echo Use Default Python Version: ${python_version}
+fi
+
+if [[ -d /opt/python/${python_version} ]]; then
+    echo ERROR: Directory Exists: /opt/python/${python_version}
+    exit 1
+fi
+
+mkdir -p /opt/python/${python_version}
+mkdir -p /opt/temp
+
+cd /opt/temp
+curl -O https://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
+tar -xzf Python-${python_version}.tgz
+
+cd Python-${python_version}
+./configure --prefix=/opt/python/${python_version}
+make install
+
+echo Removing Source Files
+rm -rf /opt/temp/Python-${python_version}.tgz
+rm -rf /opt/temp/Python-${python_version}
+
+alias_pip=alias\ pip${python_version}="/opt/python/${python_version}/bin/pip3"
+alias_python=alias\ python${python_version}="/opt/python/${python_version}/bin/python3"
+
+echo ${alias_pip}
+echo ${alias_python}
+
+if ! grep -qF "${alias_pip}" ~/.bashrc ; then echo "${alias_pip}" >> ~/.bashrc ; fi
+if ! grep -qF "${alias_python}" ~/.bashrc ; then echo "${alias_python}" >> ~/.bashrc ; fi
