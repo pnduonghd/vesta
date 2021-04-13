@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#https://github.com/pyenv/pyenv/wiki/Common-build-problems#prerequisites
+#https://superuser.com/questions/1412975/how-to-build-and-install-python-3-7-x-from-source-on-debian-9-8
+
 yum -y install gcc gcc-c++ zlib zlib-devel libffi libffi-devel openssl openssl-devel bzip2 bzip2-devel ncurses ncurses-devel gdbm gdbm-devel xz xz-devel sqlite sqlite-devel tk tk-devel uuid uuid-devel readline readline-devel
 yum -y install @development zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel libffi-devel findutils
 
