@@ -39,3 +39,7 @@ echo ${alias_python}
 
 if ! grep -qF "${alias_pip}" ~/.bashrc ; then echo "${alias_pip}" >> ~/.bashrc ; fi
 if ! grep -qF "${alias_python}" ~/.bashrc ; then echo "${alias_python}" >> ~/.bashrc ; fi
+
+du -sh /opt/temp/
+du -sh /opt/python/*
+echo source ~/.bashrc
