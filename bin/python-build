@@ -34,8 +34,15 @@ echo Removing Source Files
 rm -rf /opt/temp/Python-${python_version}.tgz
 rm -rf /opt/temp/Python-${python_version}
 
-alias_pip=alias\ pip${python_version}="/opt/python/${python_version}/bin/pip3"
-alias_python=alias\ python${python_version}="/opt/python/${python_version}/bin/python3"
+
+p_v=3
+if [[ -f /opt/python/${python_version}/bin/pip2 ]]; then
+    echo Python 2 Detected
+    p_v=2
+fi
+
+alias_pip=alias\ pip${python_version}="/opt/python/${python_version}/bin/pip${p_v}"
+alias_python=alias\ python${python_version}="/opt/python/${python_version}/bin/python${p_v}"
 
 echo ${alias_pip}
 echo ${alias_python}
