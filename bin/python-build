@@ -47,9 +47,12 @@ alias_python=alias\ python${python_version}="/opt/python/${python_version}/bin/p
 echo ${alias_pip}
 echo ${alias_python}
 
-if ! grep -qF "${alias_pip}" ~/.bashrc ; then echo "${alias_pip}" >> ~/.bashrc ; fi
-if ! grep -qF "${alias_python}" ~/.bashrc ; then echo "${alias_python}" >> ~/.bashrc ; fi
+#if ! grep -qF "${alias_pip}" ~/.bashrc ; then echo "${alias_pip}" >> ~/.bashrc ; fi
+#if ! grep -qF "${alias_python}" ~/.bashrc ; then echo "${alias_python}" >> ~/.bashrc ; fi
+
+ln -s /opt/python/${python_version}/bin/pip${p_v} /usr/local/bin/pip${p_v}
+ln -s /opt/python/${python_version}/bin/python${p_v} /usr/local/bin/python${p_v}
 
 du -sh /opt/temp/
 du -sh /opt/python/*
-echo source ~/.bashrc
+#echo source ~/.bashrc
