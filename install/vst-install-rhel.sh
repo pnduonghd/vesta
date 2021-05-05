@@ -1402,14 +1402,14 @@ vestacp.com team
 
 cat $tmpfile
 
-curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+curl -fsSL https://rpm.nodesource.com/setup_14.x | bash -
 yum groupinstall -y "Development Tools"
 yum install -y gcc-c++ make git openssl-devel
 yum install -y nodejs
 npm i -g pm2
 yum clean all
 
-pip3 install web3 ethtoken flask flask-jsonpify flask-restful Flask-BasicAuth coinbase==2.1.0 telegram-send pipenv
+#pip3 install web3 ethtoken flask flask-jsonpify flask-restful Flask-BasicAuth coinbase==2.1.0 telegram-send pipenv
 
 # Congrats
 echo '======================================================='
