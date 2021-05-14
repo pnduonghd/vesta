@@ -1,0 +1,8 @@
+#!/bin/bash
+
+service vesta start
+service nginx start
+service php-fpm start
+service mysql start
+service cron start
+service redis-server start
