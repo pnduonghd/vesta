@@ -44,7 +44,7 @@ curl -L -O 'https://raw.githubusercontent.com/pnduonghd/vesta/master/install/vst
 ```
 
 ```
-bash vst-install-ubuntu.sh --nginx yes --phpfpm yes --apache no --named no --remi yes --vsftpd no --proftpd no --iptables no --fail2ban no --quota no --exim no --dovecot no --spamassassin no --clamav no --softaculous no --mysql yes --postgresql no --hostname 127.0.0.1.nip.io
+bash vst-install-ubuntu.sh --nginx yes --phpfpm yes --apache no --named no --remi no --vsftpd no --proftpd no --iptables no --fail2ban no --quota no --exim no --dovecot no --spamassassin no --clamav no --softaculous no --mysql yes --postgresql no --hostname 127.0.0.1.nip.io
 ```
 
 ```
