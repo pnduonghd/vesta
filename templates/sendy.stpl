@@ -1,5 +1,5 @@
 server {
-    listen      %ip%:%web_ssl_port% ssl http2;
+    listen      %web_ssl_port% ssl http2;
     server_name %domain_idn% %alias_idn%;
     ssl_certificate      %ssl_pem%;
     ssl_certificate_key  %ssl_key%;
@@ -79,10 +79,6 @@ server {
         alias   %home%/%user%/web/%domain%/stats/;
         include %home%/%user%/web/%domain%/stats/auth.conf*;
     }
-
-    include     /etc/nginx/conf.d/phpmyadmin.inc*;
-    include     /etc/nginx/conf.d/phppgadmin.inc*;
-    include     /etc/nginx/conf.d/webmail.inc*;
 
     include     %home%/%user%/conf/web/nginx.%domain%.conf*;
 }

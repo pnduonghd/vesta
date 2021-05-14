@@ -1,5 +1,5 @@
 server {
-    listen      %ip%:%web_port%;
+    listen      %web_port%;
     server_name %domain_idn% %alias_idn%;
     root        %docroot%;
     index       index.php index.html index.htm;
@@ -45,10 +45,6 @@ server {
         deny    all;
         return  404;
     }
-
-    include     /etc/nginx/conf.d/phpmyadmin.inc*;
-    include     /etc/nginx/conf.d/phppgadmin.inc*;
-    include     /etc/nginx/conf.d/webmail.inc*;
 
     include     %home%/%user%/conf/web/nginx.%domain%.conf*;
 }
