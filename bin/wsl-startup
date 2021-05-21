@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd ~
 service vesta status > /dev/null || service vesta start
 service nginx status > /dev/null || service nginx start
 service php-fpm status > /dev/null || service php-fpm start
