@@ -88,6 +88,8 @@ systemctl status mongod
 ```
 https://unix.stackexchange.com/questions/65075/delete-last-n-lines-from-bash-history
 
+unset HISTFILE
+
 for i in {1..10}; do echo "clearing line $(($HISTCMD-2)): $(history -p \!$(($HISTCMD-2)))"; history -d $(($HISTCMD-2)); done; history -d $(($HISTCMD-1))
 
 curl -L 'https://raw.githubusercontent.com/pnduonghd/vesta/master/bin/ssh-keylist' | bash
@@ -97,4 +99,6 @@ grep -q "^[^#]*PasswordAuthentication" /etc/ssh/sshd_config && sed -i "/^[^#]*Pa
 service sshd restart
 
 echo ssh root@`curl -4 ifconfig.co`
+
+history -c
 ```
