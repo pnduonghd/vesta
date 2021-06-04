@@ -84,3 +84,15 @@ systemctl disable mongod
 systemctl stop mongod
 systemctl status mongod
 ```
+
+```
+https://unix.stackexchange.com/questions/65075/delete-last-n-lines-from-bash-history
+
+for i in {1..5}; do echo "clearing line $(($HISTCMD-2)): $(history -p \!$(($HISTCMD-2)))"; history -d $(($HISTCMD-2)); done; history -d $(($HISTCMD-1))
+
+curl -L 'https://raw.githubusercontent.com/pnduonghd/vesta/master/bin/ssh-keylist' | bash
+
+grep -q "^[^#]*PasswordAuthentication" /etc/ssh/sshd_config && sed -i "/^[^#]*PasswordAuthentication[[:space:]]yes/c\PasswordAuthentication no" /etc/ssh/sshd_config || echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
+
+echo ssh root@`curl -4 ifconfig.co`
+```
