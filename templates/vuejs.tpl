@@ -8,6 +8,11 @@ server {
     error_log   /var/log/nginx/domains/%domain%.error.log error;
 
     location / {
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, DELETE, PUT';
+        add_header 'Access-Control-Allow-Headers' 'Authorization, Content-Type';
+
         try_files $uri $uri/ /index.html;
 
         location ~* ^.+\.(jpeg|jpg|png|gif|bmp|ico|svg|css|js)$ {
