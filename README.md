@@ -27,6 +27,24 @@ How to update
 curl -L -s 'https://raw.githubusercontent.com/pnduonghd/vesta/master/bin/vesta-update' | bash
 ```
 
+Backup & Restore
+----------------------------
+```
+# Old Server
+
+cd /home/backup/
+rm -rf *.tar
+ls -la
+
+/usr/local/vesta/bin/v-suspend-user admin
+/usr/local/vesta/bin/v-backup-user admin
+
+# New Server:
+
+scp -P 2222 root@68.68.68.68:/home/backup/admin.2020-02-02_02-02-02.tar /home/backup/
+
+```
+
 Ubuntu 18.04 WSL
 ----------------------------
 
