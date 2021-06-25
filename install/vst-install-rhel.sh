@@ -1,5 +1,8 @@
 #!/bin/bash
 
+START_TIME=$(date +"%Y-%m-%d %H:%M:%S")
+START_TIMESTAMP=$(date +%s)
+
 # Vesta RHEL/CentOS installer v.05
 
 #----------------------------------------------------------#
@@ -1481,5 +1484,17 @@ service vesta restart
 /usr/local/bin/rclone-init
 
 chmod 711 /home
+
+
+FINISH_TIME=$(date +"%Y-%m-%d %H:%M:%S")
+FINISH_TIMESTAMP=$(date +%s)
+
+echo '====='
+echo Installation Information
+echo ${START_TIME}
+echo ${FINISH_TIME}
+
+EXE_TIME=$(( ${FINISH_TIMESTAMP}-${START_TIMESTAMP} ))
+echo ${EXE_TIME} seconds \~ $(( ${EXE_TIME}/60 )) minutes
 
 # EOF
