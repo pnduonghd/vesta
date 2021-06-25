@@ -76,15 +76,13 @@ Edit VestaCP Default Package
 ```
 
 ```
-mongodb-install
-```
-
-```
-vesta-change-port
-```
-
-```
 sshd-change-port
+vesta-change-port
+vesta-phpmyadmin-passwd
+```
+
+```
+mongodb-install
 ```
 
 ```
