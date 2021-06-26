@@ -41,7 +41,9 @@ ls -la
 
 # New Server:
 
+cd /home/backup/
 scp -P 2222 root@68.68.68.68:/home/backup/admin.2020-02-02_02-02-02.tar /home/backup/
+/usr/local/vesta/bin/v-restore-user admin admin.2020-02-02_02-02-02.tar
 
 ```
 
