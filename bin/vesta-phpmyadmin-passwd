@@ -3,8 +3,10 @@
 USERNAME=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
 PASSWD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
 
-echo phpMyAdmin
-echo $USERNAME
-echo $PASSWD
+echo -----
+echo Basic Authentication For Vesta and phpMyAdmin
+echo Username: $USERNAME
+echo Password: $PASSWD
+echo -----
 
 htpasswd -b -c /etc/nginx/conf.d/phpmyadmin.htpasswd $USERNAME $PASSWD

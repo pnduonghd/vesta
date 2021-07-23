@@ -1453,13 +1453,26 @@ echo
 cd ~
 cat .my.cnf
 
+
+DATE=$(date +"%Y-%m-%d_%H.%M.%S")
+
 git clone https://github.com/pnduonghd/vesta.git /tmp/vesta_extra
 /bin/cp -rf /tmp/vesta_extra/templates/* /usr/local/vesta/data/templates/web/nginx/php-fpm
+
+mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.${DATE}.bak
 /bin/cp -rf /tmp/vesta_extra/conf/default.conf /etc/nginx/conf.d
+
+mv /usr/local/vesta/nginx/conf/nginx.conf /usr/local/vesta/nginx/conf/nginx.conf.${DATE}.bak
+/bin/cp -rf /tmp/vesta_extra/conf/nginx.conf /usr/local/vesta/nginx/conf/
+
 chmod +x /tmp/vesta_extra/bin/*
 /bin/cp -rf /tmp/vesta_extra/bin/* /usr/local/bin/
 
 rm -rf /tmp/vesta_extra
+
+vesta-phpmyadmin-passwd
+service nginx restart
+
 
 $VESTA/bin/v-change-web-domain-tpl admin $servername phalcon
 $VESTA/bin/v-change-web-domain-tpl admin $servername default
