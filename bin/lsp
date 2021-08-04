@@ -1,0 +1,9 @@
+#!/bin/bash
+
+path=.
+if [[ -n "$1" ]]; then
+    path=$1
+fi
+
+stat -c '%a %G %n' ${path}/* ${path}/.*
+
