@@ -3,7 +3,7 @@
 apt install -y build-essential
 apt install -y php-dev libpcre3-dev gcc make
 apt install -y redis wget python3 python3-dev nload htop nano
-apt install -y php-redis
+apt install -y php-redis php-gmp php-bcmath
 
 echo Install Phalcon
 cd /root
