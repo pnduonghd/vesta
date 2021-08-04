@@ -8,12 +8,19 @@ git clone https://github.com/pnduonghd/vesta.git /tmp/vesta_extra
 mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.${DATE}.bak
 /bin/cp -rf /tmp/vesta_extra/conf/default.conf /etc/nginx/conf.d
 
+vesta_port=$(cat /usr/local/vesta/nginx/conf/nginx.conf | grep listen | sed 's/[^0-9]*//g')
+
 mv /usr/local/vesta/nginx/conf/nginx.conf /usr/local/vesta/nginx/conf/nginx.conf.${DATE}.bak
 /bin/cp -rf /tmp/vesta_extra/conf/nginx.conf /usr/local/vesta/nginx/conf/
+
+sed -i -E "s/(listen)(\s+)([0-9]+)/\1\2${vesta_port}/" /usr/local/vesta/nginx/conf/nginx.conf
 
 chmod +x /tmp/vesta_extra/bin/*
 /bin/cp -rf /tmp/vesta_extra/bin/* /usr/local/bin/
 
 rm -rf /tmp/vesta_extra
+
+echo Vesta Port: ${vesta_port}
+cat /usr/local/vesta/nginx/conf/nginx.conf | grep listen
 
 service nginx restart
