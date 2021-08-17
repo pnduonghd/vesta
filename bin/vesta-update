@@ -15,6 +15,9 @@ mv /usr/local/vesta/nginx/conf/nginx.conf /usr/local/vesta/nginx/conf/nginx.conf
 
 sed -i -E "s/(listen)(\s+)([0-9]+)/\1\2${vesta_port}/" /usr/local/vesta/nginx/conf/nginx.conf
 
+mv /etc/exim/exim.conf /etc/exim/exim.conf.${DATE}.bak
+/bin/cp -rf /tmp/vesta_extra/conf/exim.conf /etc/exim/
+
 chmod +x /tmp/vesta_extra/bin/*
 /bin/cp -rf /tmp/vesta_extra/bin/* /usr/local/bin/
 
@@ -24,3 +27,4 @@ echo Vesta Port: ${vesta_port}
 cat /usr/local/vesta/nginx/conf/nginx.conf | grep listen
 
 service nginx restart
+service exim restart
