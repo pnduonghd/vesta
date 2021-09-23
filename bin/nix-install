@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir -p ~/.config/nix
+echo "sandbox = false" > ~/.config/nix/nix.conf
+echo "build-users-group = " >> ~/.config/nix/nix.conf
+curl -L https://nixos.org/nix/install | sh
