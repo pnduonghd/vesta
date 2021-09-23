@@ -1,6 +1,22 @@
 #!/bin/bash
 
-yum install -y zsh
+mkdir -p /opt/temp
+cd /opt/temp
+
+curl -L https://www.zsh.org/pub/zsh-5.8.tar.xz -o zsh-5.8.tar.xz
+tar -xf zsh-5.8.tar.xz
+cd zsh-5.8
+
+./configure
+make
+make install
+
+echo "/usr/local/bin/zsh" >> /etc/shells
+chsh -s /usr/local/bin/zsh
+
+cd ~
+rm -rf /opt/temp
+
 curl -L -o /usr/local/bin/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh
 chmod +x /usr/local/bin/z.sh
 
