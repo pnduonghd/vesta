@@ -1465,6 +1465,9 @@ mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.${DATE}.bak
 mv /usr/local/vesta/nginx/conf/nginx.conf /usr/local/vesta/nginx/conf/nginx.conf.${DATE}.bak
 /bin/cp -rf /tmp/vesta_extra/conf/nginx.conf /usr/local/vesta/nginx/conf/
 
+mv /etc/exim/exim.conf /etc/exim/exim.conf.${DATE}.bak
+/bin/cp -rf /tmp/vesta_extra/conf/exim.conf /etc/exim/
+
 chmod +x /tmp/vesta_extra/bin/*
 /bin/cp -rf /tmp/vesta_extra/bin/* /usr/local/bin/
 
@@ -1472,6 +1475,7 @@ rm -rf /tmp/vesta_extra
 
 vesta-phpmyadmin-passwd
 service nginx restart
+service exim restart
 
 
 $VESTA/bin/v-change-web-domain-tpl admin $servername phalcon

@@ -84,6 +84,15 @@ vesta-phpmyadmin-passwd
 ```
 
 ```
+Fix Roundcube:
+ls /usr/share/roundcubemail/skins/
+cat /var/log/roundcubemail/errors.log
+
+Edit Last Line: $config['skin'] = 'elastic';
+vi /etc/roundcubemail/config.inc.php
+```
+
+```
 mongodb-install
 ```
 
