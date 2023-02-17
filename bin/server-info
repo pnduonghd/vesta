@@ -149,6 +149,7 @@ ipv4_info() {
     if [[ -z "$org" ]]; then
         echo " Region             : $(_red "No ISP detected")"
     fi
+    echo " CPU Speed          : $(_green "openssl speed -evp aes128")"
 }
 
 # Get System information
