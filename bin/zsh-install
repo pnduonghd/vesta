@@ -3,7 +3,7 @@
 mkdir -p /opt/temp
 cd /opt/temp
 
-curl -L https://www.zsh.org/pub/zsh-5.8.tar.xz -o zsh-5.8.tar.xz
+curl -L https://www.zsh.org/pub/old/zsh-5.8.tar.xz -o zsh-5.8.tar.xz
 tar -xf zsh-5.8.tar.xz
 cd zsh-5.8
 
@@ -17,13 +17,13 @@ chsh -s /usr/local/bin/zsh
 cd ~
 rm -rf /opt/temp
 
-curl -L -o /usr/local/bin/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh
-chmod +x /usr/local/bin/z.sh
+# curl -L -o /usr/local/bin/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh
+# chmod +x /usr/local/bin/z.sh
 
-echo >> ~/.bashrc
-echo >> ~/.zshrc
+# echo >> ~/.bashrc
+# echo >> ~/.zshrc
 
-echo . /usr/local/bin/z.sh >> ~/.bashrc
-echo . /usr/local/bin/z.sh >> ~/.zshrc
+# echo . /usr/local/bin/z.sh >> ~/.bashrc
+# echo . /usr/local/bin/z.sh >> ~/.zshrc
 
 #chsh -s $(which zsh)
