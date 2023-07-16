@@ -146,3 +146,9 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 Set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc
 
 ```
+
+
+```
+phalcon project --template-engine=volt --name=store --enable-webtools
+
+```

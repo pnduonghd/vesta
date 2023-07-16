@@ -1,0 +1,12 @@
+#!/bin/bash
+
+mkdir -p /opt/php
+cd /opt/php
+git clone -b 3.4.x https://github.com/phalcon/phalcon-devtools.git
+cd /opt/php/phalcon-devtools
+
+ln -s /opt/php/phalcon-devtools/phalcon /usr/local/bin/phalcon
+chmod ugo+x /usr/local/bin/phalcon
+
+wget https://getcomposer.org/download/2.5.8/composer.phar -O /usr/local/bin/composer
+chmod ugo+x /usr/local/bin/composer
