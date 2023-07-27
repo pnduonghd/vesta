@@ -109,6 +109,17 @@ service fail2ban stop
 ```
 
 ```
+systemctl disable exim
+service exim stop
+
+systemctl disable dovecot
+service dovecot stop
+
+systemctl disable vsftpd
+service vsftpd stop
+```
+
+```
 systemctl disable mongod
 systemctl stop mongod
 systemctl status mongod
