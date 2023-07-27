@@ -21,6 +21,15 @@ mv /etc/exim/exim.conf /etc/exim/exim.conf.${DATE}.bak
 chmod +x /tmp/vesta_extra/bin/*
 /bin/cp -rf /tmp/vesta_extra/bin/* /usr/local/bin/
 
+if [[ -f /usr/bin/apt ]]; then
+    echo Ubuntu
+    sed -i '/auth_basic/d' /usr/local/vesta/nginx/conf/nginx.conf
+    sed -i '/auth_basic/d' /etc/nginx/conf.d/default.conf
+    sed -i 's/phpMyAdmin/phpmyadmin/g' /etc/nginx/conf.d/default.conf
+else
+    echo CentOS
+fi
+
 rm -rf /tmp/vesta_extra
 
 echo Vesta Port: ${vesta_port}
