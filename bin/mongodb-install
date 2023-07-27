@@ -13,6 +13,30 @@ EOM
 
 yum install -y mongodb-org
 
+PASSWD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
+
+cat << EOMI > ~/.mongodb.init.js
+
+use admin
+
+db.createUser(
+{
+    user: "root",
+    pwd: "$PASSWD",
+    roles: [
+              { role: "userAdminAnyDatabase", db: "admin" },
+              { role: "readWriteAnyDatabase", db: "admin" },
+              { role: "dbAdminAnyDatabase", db: "admin" },
+              { role: "clusterAdmin", db: "admin" }
+           ]
+})
+
+EOMI
+
+systemctl start mongod
+
+mongo < ~/.mongodb.init.js
+
 cat << EOCF >> /etc/mongod.conf
 
 security:
@@ -23,9 +47,16 @@ EOCF
 #yum install -y php73-php-pecl-mongodb
 yum install -y php-pecl-mongodb --enablerepo remi-php73
 
-systemctl start mongod
+systemctl restart mongod
 systemctl enable mongod
 systemctl status mongod
 
 echo "Check MongoDB PHP Driver"
 php -r "print_r(get_loaded_extensions());" | grep mongodb
+
+echo -----
+echo MongoDB Authentication
+echo Username: root
+echo Password: $PASSWD
+echo Port: 27017
+echo -----
