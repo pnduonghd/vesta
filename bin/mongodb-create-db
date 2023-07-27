@@ -1,0 +1,40 @@
+#!/bin/bash
+
+CONFIG_FILE=~/.mongodb.init.js
+if [ -f "$CONFIG_FILE" ]; then
+  # echo "Config File: $CONFIG_FILE exists."
+  PASSWD_ROOT=$(cat $CONFIG_FILE | grep pwd | cut -d '"' -f 2)
+else 
+  echo "Config File $CONFIG_FILE does not exist."
+  read -p "MongoDB Root Password: " PASSWD_ROOT
+fi
+
+read -p "Database Name: " dbname
+
+DB_CONFIG_FILE=~/.mongodb.$dbname.js
+
+if [ -f "$DB_CONFIG_FILE" ]; then
+  PASSWD=$(cat $DB_CONFIG_FILE | grep pwd | cut -d '"' -f 4)
+else 
+  echo "Create Config File: $DB_CONFIG_FILE"
+  PASSWD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
+  cat << EOMDB > $DB_CONFIG_FILE
+
+use $dbname
+db.dropUser("${dbname}_user")
+db.createUser( { user: "${dbname}_user", pwd: "$PASSWD", roles: [ "readWrite" ] } )
+
+EOMDB
+fi
+
+mongo -u root -p $PASSWD_ROOT < $DB_CONFIG_FILE
+
+echo -----
+echo MongoDB Authentication
+echo Database: $dbname
+echo Username: ${dbname}_user
+echo Password: $PASSWD
+echo Port: 27017
+echo Command: mongo -u ${dbname}_user -p $PASSWD --authenticationDatabase $dbname
+echo URI: mongodb://${dbname}_user:$PASSWD@127.0.0.1:27017/$dbname?retryWrites=false\&w=majority
+echo -----
