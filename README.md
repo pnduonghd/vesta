@@ -81,6 +81,8 @@ Edit VestaCP Default Package
 sshd-change-port
 vesta-change-port
 vesta-phpmyadmin-passwd
+
+/usr/local/vesta/bin/v-suspend-firewall-rule $(/usr/local/vesta/bin/v-list-firewall | grep 3306 | cut -d ' ' -f 1)
 ```
 
 ```
