@@ -1,0 +1,30 @@
+#!/bin/bash
+
+echo =====
+read -p "Database Name: " dbname
+
+if [ -z "$dbname" ]
+then
+    echo "Login Root"
+    CONFIG_FILE=~/.mongodb.init.js
+    if [ -f "$CONFIG_FILE" ]; then
+        PASSWD_ROOT=$(cat $CONFIG_FILE | grep pwd | cut -d '"' -f 2)
+    else
+        read -p "MongoDB Root Password: " PASSWD_ROOT
+    fi
+    echo mongo -u root -p $PASSWD_ROOT
+    echo =====
+    mongo -u root -p $PASSWD_ROOT
+else
+    echo "Login DB: $dbname"
+    DB_CONFIG_FILE=~/.mongodb.$dbname.js
+    if [ -f "$DB_CONFIG_FILE" ]; then
+        PASSWD=$(cat $DB_CONFIG_FILE | grep pwd | cut -d '"' -f 4)
+        echo URI: mongodb://${dbname}_user:$PASSWD@127.0.0.1:27017/$dbname?retryWrites=false\&w=majority
+        echo Command: mongo -u ${dbname}_user -p $PASSWD --authenticationDatabase $dbname
+        echo =====
+        mongo -u ${dbname}_user -p $PASSWD --authenticationDatabase $dbname
+    else 
+        echo "Config File: $DB_CONFIG_FILE does not exist."
+    fi
+fi
