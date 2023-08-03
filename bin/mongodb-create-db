@@ -35,6 +35,6 @@ echo Database: ${dbname}_db
 echo Username: ${dbname}_user
 echo Password: $PASSWD
 echo Port: 27017
-echo Command: mongo -u ${dbname}_user -p $PASSWD --authenticationDatabase $dbname
-echo URI: mongodb://${dbname}_user:$PASSWD@127.0.0.1:27017/$dbname?retryWrites=false\&w=majority
+echo Command: mongo -u ${dbname}_user -p $PASSWD --authenticationDatabase ${dbname}_db
+echo URI: mongodb://${dbname}_user:$PASSWD@127.0.0.1:27017/${dbname}_db?retryWrites=false\&w=majority
 echo -----
