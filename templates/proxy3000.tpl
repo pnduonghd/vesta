@@ -5,6 +5,11 @@ server {
     error_log   off;
 
     location / {
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, DELETE, PUT';
+        add_header 'Access-Control-Allow-Headers' 'Authorization, Content-Type';
+
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
